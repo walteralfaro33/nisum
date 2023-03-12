@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  apinisum:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - '8090:8090'
+    networks:
+      - service1
+    container_name: apinisum
+    volumes:
+      - ./app:/home
+
+networks:
+  service1:
