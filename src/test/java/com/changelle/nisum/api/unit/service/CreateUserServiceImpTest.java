@@ -1,6 +1,6 @@
 package com.changelle.nisum.api.unit.service;
 
-import com.changelle.nisum.api.domain.UserRepository;
+import com.changelle.nisum.api.domain.repository.UserRepository;
 import com.changelle.nisum.api.dto.CreateUserRequestDto;
 import com.changelle.nisum.api.dto.CreateUserResponseDto;
 import com.changelle.nisum.api.dto.PhonesRequestDto;

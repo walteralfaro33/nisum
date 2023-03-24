@@ -1,6 +1,6 @@
 package com.changelle.nisum.api.service.imp;
 
-import com.changelle.nisum.api.domain.UserRepository;
+import com.changelle.nisum.api.domain.repository.UserRepository;
 import com.changelle.nisum.api.domain.model.User;
 import com.changelle.nisum.api.exception.DeleteUserNotFoundException;
 import com.changelle.nisum.api.exception.UserNotFoundException;

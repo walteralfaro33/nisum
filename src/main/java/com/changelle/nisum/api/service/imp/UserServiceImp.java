@@ -1,6 +1,6 @@
 package com.changelle.nisum.api.service.imp;
 
-import com.changelle.nisum.api.domain.UserRepository;
+import com.changelle.nisum.api.domain.repository.UserRepository;
 import com.changelle.nisum.api.dto.ValidateDto;
 import com.changelle.nisum.api.exception.MailConflictException;
 import com.changelle.nisum.api.utils.ErrorMsg;

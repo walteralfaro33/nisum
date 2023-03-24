@@ -34,7 +34,7 @@
  
  ![Alt text](nisum-arquitectura.png?raw=true "Title")
 
- ## Coverage: 91% 
+ ## Coverage: 99% 
  
  NOTA: Todas las apis retornan errores del formato {"mensaje": "mensaje de error"}
 
