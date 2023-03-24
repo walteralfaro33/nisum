@@ -1,4 +1,4 @@
-package com.changelle.nisum.api.domain;
+package com.changelle.nisum.api.domain.repository;
 
 import com.changelle.nisum.api.domain.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -4,14 +4,12 @@ import com.changelle.nisum.api.domain.model.Phone;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.jackson.Jacksonized;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Jacksonized
-@Setter
 @Getter
 @Builder
 @AllArgsConstructor

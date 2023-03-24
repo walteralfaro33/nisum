@@ -4,13 +4,11 @@ import com.changelle.nisum.api.domain.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.jackson.Jacksonized;
 
 import java.time.LocalDateTime;
 
 @Jacksonized
-@Setter
 @Getter
 @Builder
 @AllArgsConstructor

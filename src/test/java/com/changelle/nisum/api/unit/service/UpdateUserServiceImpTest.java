@@ -1,6 +1,6 @@
 package com.changelle.nisum.api.unit.service;
 
-import com.changelle.nisum.api.domain.UserRepository;
+import com.changelle.nisum.api.domain.repository.UserRepository;
 import com.changelle.nisum.api.domain.model.User;
 import com.changelle.nisum.api.dto.PhonesRequestDto;
 import com.changelle.nisum.api.dto.UpdateUserRequestDto;
@@ -58,14 +58,15 @@ class UpdateUserServiceImpTest {
         //Assert
         Assertions.assertNotNull(updateUserResponseDto);
         Assertions.assertEquals("walter", updateUserResponseDto.getName());
-        Assertions.assertNotNull(updateUserResponseDto.getToken());
+        Assertions.assertEquals(token, updateUserResponseDto.getToken());
         Assertions.assertNotNull(updateUserResponseDto.getCreated());
         Assertions.assertNotNull(updateUserResponseDto.getLastLogin());
         Assertions.assertNotNull(updateUserResponseDto.getModified());
+        Assertions.assertNotNull(updateUserResponseDto.getMail());
+        Assertions.assertNotNull(updateUserResponseDto.getPassword());
         Assertions.assertTrue(updateUserResponseDto.isActive());
-        Assertions.assertEquals(token, updateUserResponseDto.getToken());
-    }
 
+    }
 
     @Test
     void testUpdateUser_checkPassword_thenReturnErrorPasswordInvalidFoundException() {

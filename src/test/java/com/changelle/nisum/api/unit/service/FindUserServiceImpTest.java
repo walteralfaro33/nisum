@@ -1,7 +1,8 @@
 package com.changelle.nisum.api.unit.service;
 
-import com.changelle.nisum.api.domain.UserRepository;
+import com.changelle.nisum.api.domain.model.Phone;
 import com.changelle.nisum.api.domain.model.User;
+import com.changelle.nisum.api.domain.repository.UserRepository;
 import com.changelle.nisum.api.dto.FindUserResponseDto;
 import com.changelle.nisum.api.exception.UserNotFoundException;
 import com.changelle.nisum.api.service.imp.FindUserServiceImpl;
@@ -15,7 +16,8 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -41,7 +43,19 @@ class FindUserServiceImpTest {
 
     @Test
     void testGetUserById_thenReturnUser() {
-        when(userRepository.findById(Mockito.any())).thenReturn(Optional.of(User.builder().token(token).id(idUser).phones(new ArrayList<>()).build()));
+        when(userRepository.findById(Mockito.any())).thenReturn(Optional.of(
+                User.builder()
+                        .token(token)
+                        .id(idUser)
+                        .modified(LocalDateTime.now())
+                        .created(LocalDateTime.now())
+                        .lastLogin(LocalDateTime.now())
+                        .name("zyx")
+                        .email("aaaa@gmail.com")
+                        .isActive(true)
+                        .password("aaaaa")
+                        .phones(List.of(getPhone()))
+                        .build()));
         FindUserResponseDto findUserResponseDto = findUserService.getUserById(idUser);
         verify(userRepository, times(1)).findById(Mockito.any());
 
@@ -49,6 +63,17 @@ class FindUserServiceImpTest {
         Assert.assertNotNull(findUserResponseDto);
         Assert.assertEquals(idUser, findUserResponseDto.getIdUser());
         Assert.assertEquals(token, findUserResponseDto.getToken());
+        Assert.assertNotNull(findUserResponseDto.getCreated());
+        Assert.assertNotNull(findUserResponseDto.getLastLogin());
+        Assert.assertNotNull(findUserResponseDto.getMail());
+        Assert.assertNotNull(findUserResponseDto.getModified());
+        Assert.assertNotNull(findUserResponseDto.getName());
+        Assert.assertNotNull(findUserResponseDto.getPassword());
+        Assert.assertTrue(findUserResponseDto.isActive());
+        Assert.assertNotNull(findUserResponseDto.getPhones());
+        Assert.assertNotNull(findUserResponseDto.getPhones().get(0).getCityCode());
+        Assert.assertNotNull(findUserResponseDto.getPhones().get(0).getCountryCode());
+        Assert.assertNotNull(findUserResponseDto.getPhones().get(0).getNumber());
     }
 
 
@@ -59,5 +84,9 @@ class FindUserServiceImpTest {
         Assert.assertThrows(UserNotFoundException.class, () -> {
             findUserService.getUserById(idUser);
         });
+    }
+
+    private Phone getPhone() {
+        return Phone.builder().cityCode("1212").countryCode("121").number("11").id(1).build();
     }
 }

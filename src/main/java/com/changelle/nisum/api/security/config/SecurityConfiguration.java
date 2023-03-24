@@ -2,7 +2,6 @@ package com.changelle.nisum.api.security.config;
 
 import com.changelle.nisum.api.security.filter.JwtFilter;
 import com.changelle.nisum.api.security.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,10 +16,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Autowired
     private UserService userService;
 
-    @Autowired
     private JwtFilter jwtFilter;
 
     private static final String[] AUTH_WHITELIST = {
@@ -38,6 +35,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             "/api-nisum/v1/authenticate"
             // other public endpoints of your API may be appended to this array
     };
+
+    public SecurityConfiguration(UserService userService, JwtFilter jwtFilter) {
+        this.userService = userService;
+        this.jwtFilter = jwtFilter;
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
